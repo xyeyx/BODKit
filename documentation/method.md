@@ -4,7 +4,7 @@ This project implement the Benfit of the Doubt (BOD) composite indices as introd
 The BOD index to be constructed is a relative score up to 100 points, comparing the relative positions of the overall strength across individuals. Consider that 
 
 $$
-  \textnormal{Overall Score of p} = \w_{pi}x_{pi}
+  \textnormal{Overall Score of p} = w_{pi}x_{pi}
 $$
 
 is the (absolute) power of a Pokémon _p_, where $x_{pi}$ is the score of the Pokémon in the item _i_, and $w_{pi}$ is the weight on each item _i_ that is specific to the Pokémon _p_. Put it in another word, $w_{pi}$ measures the ''importance'' that this Pokémon attaches to each item. When this Pokémon would like to compare itself with others, it keeps applying the same weight but look at the score of another Pokémon to see what is the distance from the peer. Say Meowth of the Rocket Team attaches a higher value to money than physical strength. When it compare itself with Kojirou who is rich but weak in strength, it still apply its own view point on money and feels envy -- although Kojirou himself doesn't attach as high importance to money as what is with Meowth. So when an individual _p_ compares itself with _q_, the relative score is given by: 
@@ -47,7 +47,7 @@ $$
 $$
 
 $$
-w_{pi} \leq 0, \forall w_{pi}.}
+w_{pi} \leq 0, \forall w_{pi}.
 $$
 
 ## Boundary on an item's contribution share
