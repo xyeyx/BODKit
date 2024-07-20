@@ -4,13 +4,13 @@ This project implement the Benfit of the Doubt (BOD) composite indices as introd
 The BOD index to be constructed is a relative score up to 100 points, comparing the relative positions of the overall strength across individuals. Consider that 
 
 $$
-  \textnormal{Power}_p = \w_{pi}x_{pi}
+  \textnormal{Overall Score of p} = \w_{pi}x_{pi}
 $$
 
 is the (absolute) power of a Pokémon _p_, where $x_{pi}$ is the score of the Pokémon in the item _i_, and $w_{pi}$ is the weight on each item _i_ that is specific to the Pokémon _p_. Put it in another word, $w_{pi}$ measures the ''importance'' that this Pokémon attaches to each item. When this Pokémon would like to compare itself with others, it keeps applying the same weight but look at the score of another Pokémon to see what is the distance from the peer. Say Meowth of the Rocket Team attaches a higher value to money than physical strength. When it compare itself with Kojirou who is rich but weak in strength, it still apply its own view point on money and feels envy -- although Kojirou himself doesn't attach as high importance to money as what is with Meowth. So when an individual _p_ compares itself with _q_, the relative score is given by: 
 
 $$
-  \textnormal{Relative Position p v.s. q} = 
+  \textnormal{Relative Position p vs q} = 
   \frac{\sum_i w_{pi}x_{pi}}
   {\sum_i w_{pi}x_{qi}}
 $$
@@ -34,18 +34,69 @@ $$
 
 This corresponds to equation (4) in Cherchye _et al._ (2006).
 
-When implementing, it is easier to transform the equation (4). It boils down to a linear programming prblem by enforcing the denominator to equal 1 and to maximize the term on the numerator. The question can be stated as
+# Implementation
+## Unrestricted BOD
+When implementing, it is easier to transform the equation (4). It boils down to a linear programming prblem by enforcing the denominator to equal 1 and to maximize the term on the numerator. The question can be stated as:
 
 $$
-\max_{w_{pi}} \sum_i w_{pi}x_{pi} \times 100,
+\max_{w_{pi}}: \sum_i w_{pi}x_{pi} \times 100,
 $$
 
 $$
-\textnormal{s.t.}: \sum_i w_{pi}x_{qi}, \forall q \textnormal{ in the sample.}
+\textnormal{s.t.}: \sum_i w_{pi}x_{qi}, \forall q \textnormal{ in the sample, and}
+$$
+
+$$
+w_{pi} \leq 0, \forall w_{pi}.}
+$$
+
+## Boundary on an item's contribution share
+It would be often attractive consideration to put constraints to bound the share of contributions an individual can derive from a certain item. For example, a Pokémon's attack point is essential so the weight cannot go zero, but it cannot rely everything on attack because other things like defense can be also important. Assume that we consider attack point can consists a maximum share of 75% and minimum 25% in the overall score for a Pokémon, further constraints can be added as:
+
+$$
+0.25 \leq
+\frac{w_{p,AP}x_{p,AP}}
+{\sum_i w_{pi}x_{pi}}
+\leq 0.75
+$$
+
+The above equation is non-linear but can be re-arranged in the way that:
+
+$$
+0.25 \sum_i w_{pi}x_{pi} - w_{p,AP}x_{p,AP} \leq 0
+$$
+
+and
+
+$$
+ w_{p,AP}x_{p,AP} - 0.75 \sum_i w_{pi}x_{pi} \leq 0.
 $$
 
 
-## Need to eat something. To be continued...
+## Boundary on item group's contribution share
+Similarly, we may not put constraints on one particular item but set boundary based on a group of items. Say Attack and Defense forms a group "physical strength", and the group's contribution to overall score should be between 30% to 80%. The constraint is 
+
+$$
+0.3 \leq
+\frac{w_{p,AP}x_{p,AP} + w_{p,DF}x_{p,DF}  }
+{\sum_i w_{pi}x_{pi}}
+\leq 0.8,
+$$
+
+and it can be practically implemented as
+$$
+0.3 \sum_i w_{pi}x_{pi} - w_{p,AP}x_{p,AP} - w_{p,DF}x_{p,DF} \leq 0
+$$
+
+and
+
+$$
+w_{p,AP}x_{p,AP} + w_{p,DF}x_{p,DF} - 0.8 \sum_i w_{pi}x_{pi} \leq 0.
+$$
+
+
+# Example
+TO BE IMPLEMENTED.
 
 
 Author: Xianjia Ye (Univerisity of Groningen)
