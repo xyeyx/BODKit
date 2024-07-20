@@ -66,8 +66,6 @@ $$
 0.25 \sum_i w_{pi}x_{pi} - w_{p,AP}x_{p,AP} \leq 0
 $$
 
-and
-
 $$
  w_{p,AP}x_{p,AP} - 0.75 \sum_i w_{pi}x_{pi} \leq 0.
 $$
@@ -84,11 +82,10 @@ $$
 $$
 
 and it can be practically implemented as
+
 $$
 0.3 \sum_i w_{pi}x_{pi} - w_{p,AP}x_{p,AP} - w_{p,DF}x_{p,DF} \leq 0
 $$
-
-and
 
 $$
 w_{p,AP}x_{p,AP} + w_{p,DF}x_{p,DF} - 0.8 \sum_i w_{pi}x_{pi} \leq 0.
