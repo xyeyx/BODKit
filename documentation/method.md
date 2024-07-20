@@ -43,11 +43,11 @@ $$
 $$
 
 $$
-\textnormal{s.t.}: \sum_i w_{pi}x_{qi}, \forall q \textnormal{ in the sample, and}
+\textnormal{s.t.}: \sum_i w_{pi}x_{qi}\leq 1, \forall q \textnormal{ in the sample, and}
 $$
 
 $$
-w_{pi} \leq 0, \forall w_{pi}.
+w_{pi} \geq 0, \forall w_{pi}.
 $$
 
 ## Boundary on an item's contribution share
