@@ -1,4 +1,7 @@
 function [Scores, Weights] = UnrestrictedBOD(dt)
+    % Author: Xianjia Ye
+    %         University of Groningen
+    % This version: 2024 JULY 20
 
     % c: counts of entries, 
     % n: number of items.

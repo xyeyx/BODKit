@@ -1,4 +1,8 @@
 function [Scores, Weights] = WgtBOD(dt,UpperB,LowerB)
+    % Author: Xianjia Ye
+    %         University of Groningen
+    % This version: 2024 JULY 20
+    
     % Verification of data
     % c: counts of entries, 
     % n: number of pillars
