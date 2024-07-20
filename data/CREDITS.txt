@@ -1,0 +1,6 @@
+pokemon101.csv
+--------------
+Description:
+Base stats of the first 101 Pokémon in Generation I
+Source:
+https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_base_stats_(Generation_I)
